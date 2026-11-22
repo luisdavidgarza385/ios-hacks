@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "identifier": "com.xdavid.awmsexx.repo",
+  "name": "AWM SEXX",
+  "description": "Repositorio oficial de @xDavid para temas, fondos y configuraciones.",
+  "icon": "assets/icon.png",
+  "packages": []
+}
