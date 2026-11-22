@@ -16,19 +16,21 @@ jobs:
 
       - name: Build unsigned iOS app
         run: |
-          xcodebuild build \
+          xcodebuild \
             -project ThreeOneOSFive.xcodeproj \
             -target 3105 \
             -configuration Release \
             -sdk iphoneos \
-            -derivedDataPath build/DerivedData \
+            SYMROOT="$PWD/build/SymRoot" \
+            OBJROOT="$PWD/build/ObjRoot" \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO \
-            CODE_SIGN_IDENTITY=""
+            CODE_SIGN_IDENTITY="" \
+            build
 
       - name: Package IPA
         run: |
-          APP_PATH=$(find build/DerivedData/Build/Products/Release-iphoneos -maxdepth 1 -name "*.app" | head -n 1)
+          APP_PATH=$(find build/SymRoot/Release-iphoneos -maxdepth 1 -name "*.app" | head -n 1)
           test -n "$APP_PATH"
           mkdir -p build/Payload
           cp -R "$APP_PATH" build/Payload/
